@@ -20,18 +20,37 @@ let findOne = (queryObj) => {
 	// selectedFields._id = 0;
 	return contactsCollection.findOne(queryObj);
 };
+
+let find = (queryObj) => {
+	const contactsCollection = currentMongodbClient
+		.db()
+		.collection(collectionName);
+	// selectedFields._id = 0;
+	return contactsCollection.find(queryObj).toArray();
+};
+
 let update = (queryObj, setObj) => {
 	const contactsCollection = currentMongodbClient
 		.db()
 		.collection(collectionName);
-	return contactsCollection.update(queryObj, setObj, {
+	return contactsCollection.updateMany(queryObj, setObj, {
 		multi: true,
 	});
 };
+
+let findAllSecondary = (queryObj) => {
+	const contactsCollection = currentMongodbClient
+		.db()
+		.collection(collectionName);
+	// selectedFields._id = 0;
+	return contactsCollection.find(queryObj).sort({"createdAt": 1}).skip(1).toArray();
+}
 
 module.exports = {
 	setMongodbClient: setMongodbClient,
 	create: create,
 	findOne: findOne,
+	find,
+	findAllSecondary,
 	update: update,
 };
