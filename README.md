@@ -1,11 +1,6 @@
 # FluxKart identity API
 
-Fluxkart identity API is created for managing the identity of the fluxkart user. You can see the original problem statement here
-
-```bash
-https://bitespeed.notion.site/Bitespeed-Backend-Task-Identity-Reconciliation-53392ab01fe149fab989422300423199
-```
-
+Fluxkart identity API is created for managing the identity of the fluxkart user. You can see the original [problem statement here](https://bitespeed.notion.site/Bitespeed-Backend-Task-Identity-Reconciliation-53392ab01fe149fab989422300423199)
 
 
 ### Demo Link
@@ -20,7 +15,7 @@ You can make POST request on this url with body parameters. (both field are opti
 ```
 
 ```bash
-https://bitespeed-api.onrender.com/identify
+https://bitespeed-6jhz.onrender.com/identify
 ```
 
 ### Installation
