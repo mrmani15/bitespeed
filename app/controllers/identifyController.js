@@ -37,7 +37,6 @@ const identifyController = async (req, res) => {
 
     // if contact details exists
     if (details.length > 0) {
-      // check if both email and phoneNumber is exists in this details array
       let isEmailExist = isExist(details, email, "email");
       let isPhoneNumberExist = isExist(details, phoneNumber, "phoneNumber");
 
@@ -58,7 +57,6 @@ const identifyController = async (req, res) => {
         response = await generateResponse(email, phoneNumber);
         return res.status(200).json(response);
       }
-      // if both fields exist
 
       // filter out the primary documents data
       let primaryData = details.filter((d) => d.linkPrecedence === "primary");

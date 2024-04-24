@@ -18,19 +18,16 @@ const generateResponse = async (email, phoneNumber) => {
 };
 
 const responseFormat = async (details) => {
-  //check if all the linkedId is present in details array or not.
   let isPrimaryExist = false;
   details.forEach((detail) => {
     if (detail.linkPrecedence === "primary") {
       isPrimaryExist = true;
     }
   });
-console.log(details);
+
   if (!isPrimaryExist) {
     details = await getAllLinks(details);
   }
-    
-    
 
   let primaryData = details.filter((d) => d.linkPrecedence === "primary");
   let emailList = primaryData.length ? [primaryData[0].email] : [null];
@@ -66,6 +63,7 @@ console.log(details);
 
   return response;
 };
+
 async function getAllLinks(details, processedIds = new Set()) {
   let isPrimaryExist = false;
 
@@ -78,7 +76,6 @@ async function getAllLinks(details, processedIds = new Set()) {
     }
   }
 
-  // If a primary document exists, return the array as it is
   if (isPrimaryExist) return details;
 
   // If no primary document exists, fetch parent documents for secondary documents
@@ -88,7 +85,7 @@ async function getAllLinks(details, processedIds = new Set()) {
       detail.linkPrecedence === "secondary" &&
       !processedIds.has(detail._id)
     ) {
-      processedIds.add(detail._id); // Mark the document as processed
+      processedIds.add(detail._id);
 
       let data = await findOne({ _id: detail.linkedId });
       if (data) {
